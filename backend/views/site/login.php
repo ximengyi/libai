@@ -10,33 +10,6 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 AppAsset::register($this);
 ?>
-
-<?php //$this->beginPage() ?>
-
-<!---->
-<!--<div class="site-login">-->
-<!--    <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
-<!---->
-<!--    <p>Please fill out the following fields to login:</p>-->
-<!---->
-<!--    <div class="row">-->
-<!--        <div class="col-lg-5">-->
-<!--            --><?php //$form = ActiveForm::begin(['id' => 'login-form']); ?>
-<!---->
-<!--                --><?//= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-<!---->
-<!--                --><?//= $form->field($model, 'password')->passwordInput() ?>
-<!---->
-<!--                --><?//= $form->field($model, 'rememberMe')->checkbox() ?>
-<!---->
-<!--                <div class="form-group">-->
-<!--                    --><?//= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-<!--                </div>-->
-<!---->
-<!--            --><?php //ActiveForm::end(); ?>
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +25,6 @@ AppAsset::register($this);
     <script src="http://ajax.useso.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
-<?php $this->beginBody() ?>
 <script>$(document).ready(function(c) {
         $('.close').on('click', function(c){
             $('.login-form').fadeOut('slow', function(c){
@@ -62,7 +34,7 @@ AppAsset::register($this);
     });
 </script>
 <!--SIGN UP-->
-<h1>klasikal Login Form</h1>
+<h1>Floorball Login Form</h1>
 <div class="login-form">
     <div class="close"> </div>
     <div class="head-info">
@@ -74,10 +46,10 @@ AppAsset::register($this);
     <div class="avtar">
         <img src="images/avtar.png" />
     </div>
-    <form>
-        <input type="text" class="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
+     <form   method="post" action="/index.php?r=article" >
+        <input type="text" class="text" name="username" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
         <div class="key">
-            <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+            <input type="password"  name ="password"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
         </div>
     </form>
     <div class="signin">
@@ -88,7 +60,5 @@ AppAsset::register($this);
     <p>Copyright &copy; 2018.Company name All rights reserved.More Templates </p>
 </div>
 
-<?php $this->endBody() ?>
     </body>
     </html>
-<?php $this->endPage() ?>

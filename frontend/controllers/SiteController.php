@@ -81,11 +81,13 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionLogin()
-    {
+    {  echo 111;die;
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
+      $username = $this->post("username","");
 
+      var_dump($username);die;
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();

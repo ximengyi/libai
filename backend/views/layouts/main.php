@@ -152,13 +152,13 @@ AppAsset::register($this);
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="#"><i class="fa fa-dashboard"></i> 仪表盘</a>
+                        <a href="/index.php?r=adminuser"><i class="fa fa-dashboard"></i>用户管理</a>
                     </li>
                     <li>
-                        <a  href="#"><i class="fa fa-desktop"></i>文章管理</a>
+                        <a  href="/index.php?r=article"><i class="fa fa-desktop"></i>文章管理</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i>图片管理</a>
+                        <a href="/index.php?r=brand-images"><i class="fa fa-bar-chart-o"></i>图片管理</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-qrcode"></i>评论管理</a>
