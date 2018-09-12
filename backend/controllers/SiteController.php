@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\controllers;
 
 use Yii;
@@ -12,8 +13,9 @@ use common\models\LoginForm;
  */
 class SiteController extends Controller
 {
-
+    public $enableCsrfValidation = false;
     public $layout = false;
+
     /**
      * {@inheritdoc}
      */
@@ -62,7 +64,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('login');
     }
 
     /**
@@ -76,16 +78,30 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            $model->password = '';
+        if (Yii::$app->request->isPost) {
+            $test =  Yii::$app->request->post();
+            var_dump($test);die;
+            $model = new LoginForm();
+           $test =  $model->load(Yii::$app->request->post());
+         //  var_dump($test);die;
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
 
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+                return $this->redirect(['/adminuser/index']);
+            } else {
+                $model->password = '';
+                return $this->render(
+                    'login',
+                    [
+                        'model' => $model,
+                        'message' => '用户名或密码不正确，请重新输入',
+                    ]
+                );
+            }
+        }else{
+
+            return $this->render('login');
         }
+
     }
 
     /**
