@@ -6,8 +6,8 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
-
+use backend\models\LoginForm;
+use backend\models\SignupForm;
 /**
  * Site controller
  */
@@ -26,11 +26,11 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error','signup'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index','signup'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -39,7 +39,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post','get'],
                 ],
             ],
         ];
@@ -75,18 +75,14 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(['/article/index']);
         }
 
-        if (Yii::$app->request->isPost) {
-            $test =  Yii::$app->request->post();
-            var_dump($test);die;
+       if (Yii::$app->request->isPost) {
             $model = new LoginForm();
-           $test =  $model->load(Yii::$app->request->post());
-         //  var_dump($test);die;
-            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            if ($model->load(Yii::$app->request->post(),'') && $model->login()) {
 
-                return $this->redirect(['/adminuser/index']);
+                return $this->redirect(['/article/index']);
             } else {
                 $model->password = '';
                 return $this->render(
@@ -98,7 +94,6 @@ class SiteController extends Controller
                 );
             }
         }else{
-
             return $this->render('login');
         }
 
@@ -112,7 +107,28 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
+        return $this->redirect(['/site/index']);
 
-        return $this->goHome();
     }
+
+
+
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->redirect(['/site/index']);
+                }
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
 }

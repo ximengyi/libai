@@ -6,8 +6,6 @@
 
 use backend\assets\AppAsset;
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
 AppAsset::register($this);
 ?>
 <!DOCTYPE html>
@@ -36,9 +34,9 @@ AppAsset::register($this);
         $('#rememberCheck').onclick( function () {
 
             if( this.checked ){
-                $(this).prop("checked",false);
+                $(this).prop("checked",0);
             }else{
-                $(this).prop("checked",true);
+                $(this).prop("checked",1);
             }
 
             console.log(isChecked);
@@ -71,7 +69,7 @@ AppAsset::register($this);
         <div class="key">
             <input type="password"  name ="password"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
         </div>
-         <input id="rememberCheck" type="checkbox" name="rememberMe"    />
+         <input id="rememberCheck" type="checkbox" name="rememberMe"/>&nbsp&nbsp记住密码
     <div class="signin">
         <input type="submit" value="Login" />
     </div>
@@ -79,7 +77,7 @@ AppAsset::register($this);
 </div>
 
 <div class="copy-rights">
-    <p>Copyright &copy; 2018.Company name All rights reserved.More Templates </p>
+    <p>Copyright &copy; 2018.Company name All rights reserved.</p>
 </div>
 
     </body>

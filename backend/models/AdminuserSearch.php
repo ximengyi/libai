@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use backend\models\Adminuser;
 
 /**
- * AdminuserSearch represents the model behind the search form of `\backend\models\Adminuser`.
+ * AdminuserSearch represents the model behind the search form of `backend\models\Adminuser`.
  */
 class AdminuserSearch extends Adminuser
 {
@@ -19,7 +19,7 @@ class AdminuserSearch extends Adminuser
     {
         return [
             [['id'], 'integer'],
-            [['username', 'nickname', 'password', 'email', 'profile', 'auth_key', 'password_hash', 'password_reset_token'], 'safe'],
+            [['username', 'nickname', 'email', 'profile', 'auth_key', 'password_hash', 'password_reset_token', 'created_time', 'updated_time'], 'safe'],
         ];
     }
 
@@ -60,11 +60,12 @@ class AdminuserSearch extends Adminuser
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'created_time' => $this->created_time,
+            'updated_time' => $this->updated_time,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'nickname', $this->nickname])
-            ->andFilterWhere(['like', 'password', $this->password])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'profile', $this->profile])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
