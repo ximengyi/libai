@@ -70,6 +70,7 @@ AppAsset::register($this);
             <input type="password"  name ="password"  value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
         </div>
          <input id="rememberCheck" type="checkbox" name="rememberMe"/>&nbsp&nbsp记住密码
+                  <input type="hidden" name="_csrf-backend" value="<?= Yii::$app->request->csrfToken ?>" />
     <div class="signin">
         <input type="submit" value="Login" />
     </div>

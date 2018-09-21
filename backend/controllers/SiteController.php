@@ -13,7 +13,7 @@ use backend\models\SignupForm;
  */
 class SiteController extends Controller
 {
-    public $enableCsrfValidation = false;
+   // public $enableCsrfValidation = false;
     public $layout = false;
 
     /**

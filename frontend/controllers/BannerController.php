@@ -16,7 +16,7 @@ use frontend\models\ContactForm;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class BannerController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -87,6 +87,7 @@ class SiteController extends Controller
         }
       $username = $this->post("username","");
 
+      var_dump($username);die;
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
