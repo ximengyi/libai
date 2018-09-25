@@ -4,14 +4,9 @@
 
 $this->title = 'My Yii Application';
 ?>
-<style>
-    .wrap .container{
-        width:100%;
-        padding:0;
-    }
-</style>
 
-<div class="banner" >
+
+<div class="banner" id="home">
     <ul>
         <li><img src="img/banner-11.jpg"></li>
         <li><img src="img/banner-22.jpg"></li>
@@ -40,5 +35,13 @@ $this->registerJs($js);
 
 
 <?php
-$this->render('service.php');
+echo $this->render('service.php');
+echo $this->render('about.php');
+echo $this->render('gallery.php');
+echo $this->render('testimonials.php');
+echo $this->render('team.php');
+echo $this->render('contact.php');
+
+
 ?>
+

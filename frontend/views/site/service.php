@@ -3,10 +3,11 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
+//
+// $this->title = 'ceshi';
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <!-- service-type-grid -->
 <div class="different agileits all_pad" id="services">
     <div class="container">

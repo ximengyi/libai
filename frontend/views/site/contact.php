@@ -11,35 +11,59 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="newsletter wow fadeInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+    <div class="container">
+        <h3>sign up for our newsletter</h3>
+        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.</p>
+        <form action="#" method="post">
+            <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+            <input type="submit" value="Subscribe">
+        </form>
+    </div>
+</div>
+<!--/newsletter-->
+<!--contact-->
+<div class="contact_w3agile" id="contact">
+    <div class="container wow fadeInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+        <h2 class="title">Contact</h2>
 
-    <p>
-        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-    </p>
+        <form action="#" method="post">
+            <input type="text" value="Name" name="Name" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Name';}">
+            <input type="email address" value="Email" name="Email" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Email';}">
+            <textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}" required>Message</textarea>
+            <div class="con-form text-center">
+                <input type="submit" value="Send">
+            </div>
+        </form>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+    </div>
+</div>
+<!--/contact-->
+<div class="map wow fadeInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+    <iframe src="" style="border:0"></iframe>
+</div>
 
-                <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
 
-                <?= $form->field($model, 'email') ?>
 
-                <?= $form->field($model, 'subject') ?>
 
-                <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                ]) ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
+<!--footer-->
+<div class="footer">
+    <div class="footer-info">
+        <div class="container">
+            <div class="icons wow fadeInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                <ul>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><img src="images/i1.png" alt=""></a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter"><img src="images/i2.png" alt=""> </a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google+"><img src="images/i3.png" alt=""></a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="LinkedIn"><img src="images/i4.png" alt=""> </a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest"><img src="images/i5.png" alt=""> </a></li>
+                </ul>
+                <script>$(function () {
+                        $('[data-toggle="tooltip"]').tooltip()
+                    })</script>
+            </div>
+            <p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
         </div>
     </div>
-
 </div>

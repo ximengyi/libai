@@ -132,16 +132,24 @@ JS;
 
 
 
-
+    <style>
+        .wrap .container{
+            width:100%;
+            padding:0;
+        }
+    </style>
 
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
         <?= $content ?>
     </div>
 </div>
+
+
+
+
+
+
+
 
 <footer class="footer">
     <div class="container">
