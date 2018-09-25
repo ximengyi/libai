@@ -1,12 +1,10 @@
-<?php
 
-/* @var $this yii\web\View */
-
-use yii\helpers\Html;
-
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
-?>
+<style>
+    #gallery{
+        width:61.8%;
+        margin:0 auto;
+    }
+</style>
 
 <!--Gallery-->
 <div class="gallery w3l-1" id="gallery">

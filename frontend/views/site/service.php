@@ -8,6 +8,13 @@ use yii\helpers\Html;
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<style>
+     #services{
+         width:61.8%;
+         margin:0 auto;
+    }
+</style>
+
 <!-- service-type-grid -->
 <div class="different agileits all_pad" id="services">
     <div class="container">

@@ -4,10 +4,16 @@
 
 use yii\helpers\Html;
 
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
+
+<style>
+    #about{
+        width:61.8%;
+        margin:0 auto;
+    }
+</style>
 
     <!--/products-->
     <div class="about w3agile" id="about">

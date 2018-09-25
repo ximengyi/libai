@@ -8,6 +8,15 @@ $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+
+
+<style>
+    #team{
+        width:70%;
+        margin:0 auto;
+    }
+</style>
+
 <div class="team-section" id="team">
     <div class="container">
         <h3 class="tittle">Our Team</h3>
