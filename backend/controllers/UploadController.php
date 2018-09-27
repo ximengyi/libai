@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\web\controllers;
+namespace backend\controllers;
 
-use yii\web\Controller;
-use \app\common\services\UploadService;
-class UploadController extends Controller
+use backend\controllers\common\BaseController;
+use common\services\UploadService;
+class UploadController extends BaseController
 {
 
     private $allow_file_type = ["jpg","gif","jpeg"];
@@ -12,8 +12,18 @@ class UploadController extends Controller
      * @return 上传接口
      * bucket:avatar/brand/book
      */
+   //  public function __construct($id,$module,array $config = [])
+   // {
+   //
+   //     echo "fasdfasdftest";die;
+   //  // parent::__construct($id,$module,$config);
+   //   //  $this->layout = "main";
+   //
+   // }
 
-  public function actionPic(){
+
+    public function actionPic(){
+
      $bucket = trim($this->post("bucket",""));
      $callback ="window.parent.upload";//error success
      if(!$_FILES ||!isset($_FILES['pic'])){
@@ -39,6 +49,6 @@ class UploadController extends Controller
        }
       return "<script>{$callback}.success('{$ret['path']}')</script>";
 
-  }
+   }
 
 }

@@ -25,6 +25,8 @@ class AppAsset extends AssetBundle
         'js/jquery.metisMenu.js',
         'js/bootstrap.min.js',
         'js/current-menu.js',
+        '/js/web/common.js',
+
 
     ];
     public $depends = [

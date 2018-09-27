@@ -6,7 +6,7 @@
  * Time: 0:31
  */
 
-namespace app\common\services;
+namespace common\services;
 
 //上传服务
 class UploadService  extends BaseService

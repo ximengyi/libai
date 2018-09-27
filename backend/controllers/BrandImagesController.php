@@ -8,6 +8,9 @@ use common\models\BrandImagesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use backend\models\UploadForm;
+
 
 /**
  * BrandImagesController implements the CRUD actions for BrandImages model.
@@ -35,12 +38,29 @@ class BrandImagesController extends Controller
      */
     public function actionIndex()
     {
+
+        $upload_model = new UploadForm();
+        if (Yii::$app->request->isPost) {
+            $upload_model->imageFile = UploadedFile::getInstance($upload_model, 'imageFile');
+            $image_dir = 'brand';
+            $upload_dir = $upload_model->upload($image_dir);
+            if(!empty($upload_dir)){
+
+              $brand_image = new BrandImages();
+              $brand_image->created_time = date("Y-m-d H:i:s");
+              $brand_image->image_key = $upload_dir;
+              $brand_image->save();
+            }
+        }
+
+
         $searchModel = new BrandImagesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+             'model'=>$upload_model,
         ]);
     }
 
@@ -123,5 +143,46 @@ class BrandImagesController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+
+
+
+    public function actionSetImage()
+    {
+
+        $image_key = trim($this->post("image_key", ""));
+
+        if (!$image_key) {
+            return $this->renderJson([], "请上传图片之后再提交~~", -1);
+        }
+
+        $total_count = BrandImages::find()->count();
+        if ($total_count >= 5) {
+
+            return $this->renderJson([], "最多上传五张~~~", -1);
+        }
+        $model = new BrandImages();
+        $model->image_key = $image_key;
+        $model->created_time = date("Y-m-d H:i:s");
+        $model->save(0);
+        return $this->renderJson([], "操作成功");
+    }
+
+
+
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+
+                return;
+            }
+        }
+
+        return $this->render('index', ['model' => $model]);
     }
 }

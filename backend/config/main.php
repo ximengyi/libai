@@ -7,6 +7,7 @@ $params = array_merge(
 );
 
 return [
+    'timeZone'=>'Asia/Shanghai',
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
@@ -31,6 +32,7 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'logFile' => '@runtime/logs/appsss.log',
                 ],
             ],
         ],

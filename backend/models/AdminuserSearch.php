@@ -19,7 +19,7 @@ class AdminuserSearch extends Adminuser
     {
         return [
             [['id'], 'integer'],
-            [['username', 'nickname', 'email', 'profile', 'auth_key', 'password_hash', 'password_reset_token', 'created_time', 'updated_time'], 'safe'],
+            [['username', 'nickname', 'email', 'profile', 'auth_key', 'password_hash', 'password_reset_token', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -60,8 +60,8 @@ class AdminuserSearch extends Adminuser
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_time' => $this->created_time,
-            'updated_time' => $this->updated_time,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])

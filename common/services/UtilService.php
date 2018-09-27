@@ -1,5 +1,5 @@
 <?php
-namespace app\common\services;
+namespace common\services;
 
 use yii\helpers\Html;
 

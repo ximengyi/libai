@@ -1,6 +1,6 @@
 <?php
 
-namespace app\common\services;
+namespace common\services;
 
 use yii\helpers\Url;
 
@@ -8,6 +8,14 @@ class UrlService
 {
 
     public static function buildWebUrl($path, $params = [])
+    {
+        $domain_config = \Yii::$app->params['domain'];
+        $path = Url::toRoute(array_merge([$path], $params));
+        return $domain_config['web'] . $path;
+
+    }
+
+    public static function buildBackendUrl($path, $params = [])
     {
         $domain_config = \Yii::$app->params['domain'];
         $path = Url::toRoute(array_merge([$path], $params));

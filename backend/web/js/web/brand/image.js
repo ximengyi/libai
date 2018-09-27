@@ -54,7 +54,7 @@ var brand_image_ops = {
                 btn_target.addClass("disabled");
 
                 $.ajax({
-                        url: common_ops.buildWebUrl("/brand/set-image"),
+                        url: common_ops.buildWebUrl("/brandimages/set-image"),
                         type: 'POST',
                         data: {
                             image_key: $("#brand_image_wrap .pic-each .del_image").attr("data")
