@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\BrandImages;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -72,7 +73,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+         $brand_image_model = BrandImages::getBrandImageModel();
+
+         return $this->render('index',
+         [
+            'brand_image'=>$brand_image_model
+
+             ]
+         );
     }
 
     /**
@@ -213,4 +221,18 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+
+    /**
+     * Displays about page.
+     *
+     * @return mixed
+     */
+    public function actionHome()
+    {
+
+    }
+
+
+
 }

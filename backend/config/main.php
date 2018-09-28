@@ -9,6 +9,7 @@ $params = array_merge(
 return [
     'timeZone'=>'Asia/Shanghai',
     'id' => 'app-backend',
+    'language'=>'zh-CN',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -39,14 +40,25 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+
+        // 'urlManager' => [
+        //     'enablePrettyUrl' => true,
+        //     'showScriptName' => false,
+        //     // 'rules' => [
+        //     // ],
+        // ],
+
+        'i18n'=>[
+          'translations'=>[
+              'class'=>'yii\i18n\PhpMessageSource',
+              'fileMap'=>[
+                  'common'=>'common.php',
+                  'test'=>'test.php',
+              ]
+          ]
+
         ],
-        */
+
     ],
     'params' => $params,
 ];

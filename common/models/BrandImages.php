@@ -44,4 +44,20 @@ class BrandImages extends \yii\db\ActiveRecord
             'created_time' => 'Created Time',
         ];
     }
+    public static function  getBrandImageModel(){
+
+        $url =  Yii::getAlias('@backend');
+        $url =  str_replace("\\","/",$url);
+        $brand_image_model = BrandImages::find()->orderBy(['id' => SORT_DESC])->all();
+        foreach ($brand_image_model as $item){
+            $image_key =  $item->image_key;
+            $image_key = $url.'/'. $image_key;
+            $item->image_key = $image_key;
+
+        }
+
+        return $brand_image_model;
+
+    }
+
 }

@@ -24,40 +24,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data','class'=>['pull-right']]]) ?>
+
+<?= $form->field($model, 'imageFile')->fileInput(['class'=>['btn','btn-primary'] ,'style'=>[],'labelOptions' => [ 'class' => 'input-group-btn']]) ?>
+
+<button class="btn btn-success ">上传图片</button>
+
+<?php ActiveForm::end() ?>
 
 
 <div class="brand-images-index">
 
-    <h1><?= Html::encode($this->title) ?></h1><br>
-
-
-
-
-
-
-
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
-
-    <?= $form->field($model, 'imageFile',[
-            'labelOptions' => [ 'class' => 'bg-success']
-
-    ])->fileInput() ?>
-
-    <button class="btn btn-success ">上传图片</button>
-
-    <?php ActiveForm::end() ?>
-
-
-
+    <h1><?= Html::encode($this->title) ?></h1>
 
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-           // ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn','header'=>'序号'],
 
-            'id',
+           // 'id',
              ['label'=>'缩略图','format'=>'raw','value'=>function($m){
                 return Html::img($m->image_key,['alt' => '缩略图','width' => 80]);
             }],
@@ -65,9 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['label'=>'创建时间','value'=>'created_time'],
 
+
             [
                     'class' => 'yii\grid\ActionColumn',
-                    'template' => '{user-delete}',
+                    'template' => '{delete}',
 
             ],
         ],

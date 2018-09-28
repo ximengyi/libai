@@ -8,11 +8,12 @@ $this->title = 'My Yii Application';
 
 <div class="banner" id="home">
     <ul>
-        <li><img src="img/banner-11.jpg"></li>
-        <li><img src="img/banner-22.jpg"></li>
-        <li><img src="img/banner-33.jpg"></li>
-        <li><img src="img/banner-44.jpg"></li>
-        <li><img src="img/banner-55.jpg"></li>
+
+        <?php foreach ($brand_image as $item): ?>
+        <?=$item->image_key ?? '';die;?>
+            <li><img src="<?=$item->image_key; ?>"></li>
+        <?php  endforeach; ?>
+
     </ul>
 </div>
 
