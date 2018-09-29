@@ -1,74 +1,39 @@
 <?php
-
-namespace backend\models;
+namespace frontend\models;
 
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+
 /**
- * This is the model class for table "adminuser".
+ * User model
  *
- * @property int $id
+ * @property integer $id
  * @property string $username
- * @property string $nickname
- * @property string $email
- * @property string $profile
- * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
- * @property string $created_time
- * @property string $updated_time
+ * @property string $email
+ * @property string $auth_key
+ * @property integer $status
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property string $password write-only password
  */
-class Adminuser extends ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
-
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+
+
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'adminuser';
+        return '{{%user}}';
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['username',  'email', 'auth_key', 'password_hash'], 'required'],
-            [['profile'], 'string'],
-            [['created_time', 'updated_time'], 'safe'],
-            [['username', 'nickname', 'email'], 'string', 'max' => 128],
-            [['auth_key'], 'string', 'max' => 32],
-            [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
-            ['nickname', 'default', 'value' => '管理员'],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'nickname' => 'Nickname',
-            'email' => 'Email',
-            'profile' => 'Profile',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'created_at' => 'Created Time',
-            'updated_at' => 'Updated Time',
-        ];
-    }
-
 
     /**
      * {@inheritdoc}
@@ -77,6 +42,17 @@ class Adminuser extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::className(),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
 
@@ -104,7 +80,7 @@ class Adminuser extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username]);
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**

@@ -5,6 +5,8 @@ return [
         'www'=>'http://libai.com',
         'm'=>'http://book.imooc.test/m',
         'web'=>'http://admin.libai.com',
+         'backend'=>'http://admin.libai.com',
+         'fronted'=>'libai.com',
     ],
     "upload" =>[
         "avatar"=>"/uploads/avatar",

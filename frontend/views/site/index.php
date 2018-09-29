@@ -10,7 +10,6 @@ $this->title = 'My Yii Application';
     <ul>
 
         <?php foreach ($brand_image as $item): ?>
-        <?=$item->image_key ?? '';die;?>
             <li><img src="<?=$item->image_key; ?>"></li>
         <?php  endforeach; ?>
 

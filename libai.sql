@@ -21,19 +21,23 @@ CREATE TABLE IF NOT EXISTS `adminuser` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `nickname` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `profile` text COLLATE utf8_unicode_ci,
   `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` smallint(6) DEFAULT '10',
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- 正在导出表  libai.adminuser 的数据：~1 rows (大约)
+-- 正在导出表  libai.adminuser 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `adminuser` DISABLE KEYS */;
-INSERT INTO `adminuser` (`id`, `username`, `nickname`, `password`, `email`, `profile`, `auth_key`, `password_hash`, `password_reset_token`) VALUES
-	(1, 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf');
+INSERT INTO `adminuser` (`id`, `username`, `nickname`, `email`, `profile`, `auth_key`, `password_hash`, `password_reset_token`, `status`, `created_at`, `updated_at`) VALUES
+	(1, 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 10, NULL, NULL),
+	(2, 'meng', '管理员', '1203669692@qq.com', NULL, 'mD5LtgKm7U8U6e6bPqwxQxw5DcSMjn_5', '$2y$13$3KLrqyHmq0joI0EfHkZxWO6tplECKxB6PC9kiC2DOURr/32Y9DDlK', NULL, 10, 1537434061, 1537434061),
+	(3, 'test', '管理员', '825313598@qq.com', NULL, 'zK_X23CEL3txPltEZQn9shzLE9iSW21O', '$2y$13$0TOgrzDKchoDWcwOhkVx/uL4KVS.ejV65EewXD48911i7H/iYDfvS', NULL, 10, 1537434835, 1537434835);
 /*!40000 ALTER TABLE `adminuser` ENABLE KEYS */;
 
 -- 导出  表 libai.article 结构
@@ -61,10 +65,14 @@ CREATE TABLE IF NOT EXISTS `brand_images` (
   `created_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '插入时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_image_key` (`image_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='品牌图片';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='品牌图片';
 
--- 正在导出表  libai.brand_images 的数据：~0 rows (大约)
+-- 正在导出表  libai.brand_images 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `brand_images` DISABLE KEYS */;
+INSERT INTO `brand_images` (`id`, `image_key`, `created_time`) VALUES
+	(1, 'uploads/brand/08f790529822720e77186fa377cb0a46f31fab91.jpg', '2018-09-27 17:58:37'),
+	(2, 'uploads/brand/b7003af33a87e950b96100121c385343fbf2b45e.jpg', '2018-09-27 17:59:53'),
+	(6, 'uploads/brand/timg (3).jpg', '2018-09-28 15:16:43');
 /*!40000 ALTER TABLE `brand_images` ENABLE KEYS */;
 
 -- 导出  表 libai.migration 结构
@@ -96,13 +104,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- 正在导出表  libai.user 的数据：~2 rows (大约)
+-- 正在导出表  libai.user 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-	(1, 'test', '6hd1vGA5GPiRsp1KSEBRPbWbD8YdjqpX', '$2y$13$PL4lGComvJ0YJjSW5k5SE.jSGEZO2CZoYFAe9KPzZyZLwwedEWI8C', NULL, '1203669692@qq.com', 10, 1529983121, 1529983121),
-	(2, 'meng', 'bHbZ698VQlcGlbvOaymc67uqZKk0HSPm', '$2y$13$eGCoS2JvLFS.g3s9ZNuVV.Rf3DQg870m6btUQDiYpabHCoiMGzoTq', NULL, '825313598@qq.com', 10, 1535613509, 1535613509);
+	(1, 'meng', 'Ss8Fj_aCv8zVVmEG131g8NmtmVHcongS', '$2y$13$9FHQ9Fr1U7wFv0h3nS5JyepO8ELiEKpAHwm8naJfnRjGYMqAV3.Q6', NULL, 'laomeng820@163.com', 10, 1536736410, 1536736410);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
